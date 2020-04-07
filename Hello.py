@@ -1,2 +1,2 @@
-def f(n):
+def f():
     print("Hello")
