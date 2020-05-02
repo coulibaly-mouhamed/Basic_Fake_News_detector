@@ -41,7 +41,7 @@ def data_scarping(subreddit,keywords):
     #on cherche a ne garder que les articles dont le titre contient les mots de mots_fake
                scrape_list= []
               for i in range(len(scrape_list_init)):
-                            if test(scrape_list_init[i].title,mots_fake)== True:
+                            if test(scrape_list_init[i][0],mots_fake)== True:
                                   scrape_list.append scrape_liste_init[i]
            return scrape_list
                       
