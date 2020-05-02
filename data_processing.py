@@ -15,7 +15,7 @@ N_trusted=['nbcnews.com','in.reuters.com','bbc.co.uk','theguardian.com','reuters
 #We don't consider synonyms here 
 
 def test(char,char_list):
-    n = len(char)
+    n = len(char_list)
     j = len(char)
     #It's an allowance to 
     threshold = 0.9*n
