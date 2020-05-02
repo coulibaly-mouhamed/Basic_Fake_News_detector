@@ -42,7 +42,7 @@ def data_scarping(subreddit,keywords):
                scrape_list= []
               for i in range(len(scrape_list_init)):
                             if test(scrape_list_init[i][0],mots_fake)== True:
-                                  scrape_list.append scrape_liste_init[i]
+                                  scrape_list.append(scrape_liste_init[i])
            return scrape_list
                       
 
