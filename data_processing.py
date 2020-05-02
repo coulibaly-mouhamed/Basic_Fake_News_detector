@@ -34,9 +34,17 @@ def data_scarping(subreddit,keywords):
     api = PushshiftAPI()
 
     # Create list of data
-    scrape_list = list(api.search_submissions(subreddit=subreddit,
+   
+    scrape_list_init = list(api.search_submissions(subreddit=subreddit,
                                 filter=['title', 'subreddit', 'num_comments', 'author', 'subreddit_subscribers', 'score', 'domain', 'created_utc'],
                                 limit=9000))
+    #on cherche a ne garder que les articles dont le titre contient les mots de mots_fake
+               scrape_list= []
+              for i in range(len(scrape_list_init)):
+                            if test(scrape_list_init[i].title,mots_fake)== True:
+                                  scrape_list.append scrape_liste_init[i]
+           return scrape_list
+                      
 
     #Filter list to only show Subreddit titles and Subreddit category 
     clean_scrape_lst = []
