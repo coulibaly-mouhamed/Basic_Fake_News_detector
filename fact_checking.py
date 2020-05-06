@@ -1,6 +1,12 @@
 import requests
 import csv
 import pandas as pd 
+####################################
+#Library to take a tittle thanks to its url
+from mechanize import Browser 
+
+####################################
+#Library for API searchs
 from psaw import PushshiftAPI
 
 #######################################
@@ -35,7 +41,7 @@ N_trusted=['nbcnews.com','in.reuters.com','bbc.co.uk','theguardian.com','reuters
 
 ###################################################################################
 ###################################################################################
-#function that gathers related news for a given tittle or keywords
+#function that gathers related news for a given title or keywords
 def fact_checking(char):
 	api = PushshiftAPI()
 	scraped_data = list(api.search_submissions(q=char,subreddit='worldnews',
@@ -54,16 +60,16 @@ def fact_checking(char):
 
 ###############################################################################
 ###############################################################################
-#We will analyse a tittle and take keywords
-#Tokenising tittle
-def tokens(tittle):
-	doc = nlp(tittle)
+#We will analyse a title and take keywords
+#Tokenising title
+def tokens(title):
+	doc = nlp(title)
 	return doc
 #Remove non essentials words
-def tittle_keywords(tittle):
-	tittle_tokens = tokens(tittle) 
+def title_keywords(title):
+	title_tokens = tokens(title) 
 	keywords=[]
-	for token in tittle_tokens:
+	for token in title_tokens:
 		if token.text not in stopWords:
 			keywords.append(token)
 	return keywords
@@ -76,12 +82,13 @@ def sentence_mean(sentence):
 ####################################################################################
 #Thanks to the number of N_trusted sources dealing with a information we will give a score to the new
 def fact_checking_score(char):
-	keywords = tittle_keywords(char)
-	keywords_tittle=""
+	keywords = title_keywords(char)
+	keywords_title=""
 	for words in keywords:
-		keywords_tittle += words.text+" "
-	n_list = fact_checking(keywords_tittle)
-	token_tittle = tokens(keywords_tittle)
+		keywords_title += words.text+" "
+	print(keywords_title)
+	n_list = fact_checking(keywords_title)
+	token_title = tokens(keywords_title)
 	N = len(n_list)
 	if N==0:
 		return 0
@@ -89,15 +96,25 @@ def fact_checking_score(char):
 	#We count how many n_trusted sites released the information
 	for i in range (len(n_list)):
 		t_keywords=""
-		tittle_i =tittle_keywords(n_list[i][3])
-		for words in tittle_i:
+		title_i =title_keywords(n_list[i][3])
+		for words in title_i:
 			t_keywords += words.text + " "
 		t_keywords =tokens(t_keywords)
-		score += token_tittle.similarity(t_keywords)
+		score += token_title.similarity(t_keywords)
 	#we take the average score
 	score = score/N
 	return score*100
 
+
+########################################################################################
+########################################################################################
+#If user gives us an url instead of a title we have to first take the title from the url and then process
+
+def fact_checking_score_url(url):
+	br = Browser()
+	br.open(url)
+	title = br.title()
+	return fact_checking_score(title)
 
 
 
