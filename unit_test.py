@@ -1,6 +1,6 @@
 import unittest
 
-from Database import Article, NoletterError, NotaLinkError, NotaTitleError
+from databasetest import Article, NoletterError, NotaLinkError, NotaTitleError
 
 
 class ScoreGoodOutput(unittest.TestCase):
