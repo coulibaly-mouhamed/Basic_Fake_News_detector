@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Fake news Detector</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<h1>Hi Folk you can check here wether your information is reliable or not</h1>
+				<p>Paste your news url here. We will check for you<br />
+			</header>
+
+		<!-- Signup Form -->
+			<form id="signup-form" method="handler()">
+				<input type="url" name="news_url" id="news_url" placeholder="news_url" />
+				<input type="submit" value="Submit" /> 
+				<br>
+				AI Score: <output name="AI Score" for="05"></output>
+				<br>
+			</form>
+			<script>function handler(e) {
+				e.preventDefault();
+				console.log(e.target.value)
+			}</script>
+		<!-- Scripts -->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
