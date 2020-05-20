@@ -2,7 +2,7 @@ def oudansliste(list,caractere):
       for i in range(len(list)):
                if liste[i]==caractere:
                        return i
-      retrun -1
+      return -1
          
 
 
