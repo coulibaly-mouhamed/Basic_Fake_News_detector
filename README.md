@@ -1,3 +1,3 @@
-# IN104_pourouchottamin_shamin_coulibaly_mouhamed
-# IN104_pourouchottamin_shamin_coulibaly_mouhamed
-# IN104_pourouchottamin_shamin_coulibaly_mouhamed
+# Fake News Detector
+This is a basic model of a Fake News detector. The idea is to apply the fack-checking method with the NLP spacy library
+
